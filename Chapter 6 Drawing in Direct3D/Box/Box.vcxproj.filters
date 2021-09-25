@@ -48,4 +48,11 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shaders\color.hlsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\color_ps.cso" />
+    <None Include="Shaders\color_vs.cso" />
+  </ItemGroup>
 </Project>

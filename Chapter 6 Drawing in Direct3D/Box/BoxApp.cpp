@@ -20,6 +20,7 @@ struct Vertex
 {
     XMFLOAT3 Pos;
     XMFLOAT4 Color;
+    //XMFLOAT3 Norm;
 };
 
 struct ObjectConstants
@@ -363,43 +364,59 @@ void BoxApp::BuildShadersAndInputLayout()
 
 void BoxApp::BuildBoxGeometry()
 {
-    std::array<Vertex, 8> vertices =
+    std::array<Vertex, 24> vertices =
     {
-        Vertex({ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(Colors::White) }),
-		Vertex({ XMFLOAT3(-1.0f, +1.0f, -1.0f), XMFLOAT4(Colors::Black) }),
-		Vertex({ XMFLOAT3(+1.0f, +1.0f, -1.0f), XMFLOAT4(Colors::Red) }),
-		Vertex({ XMFLOAT3(+1.0f, -1.0f, -1.0f), XMFLOAT4(Colors::Green) }),
-		Vertex({ XMFLOAT3(-1.0f, -1.0f, +1.0f), XMFLOAT4(Colors::Blue) }),
-		Vertex({ XMFLOAT3(-1.0f, +1.0f, +1.0f), XMFLOAT4(Colors::Yellow) }),
-		Vertex({ XMFLOAT3(+1.0f, +1.0f, +1.0f), XMFLOAT4(Colors::Cyan) }),
-		Vertex({ XMFLOAT3(+1.0f, -1.0f, +1.0f), XMFLOAT4(Colors::Magenta) })
+        Vertex({ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(Colors::White)}),//, XMFLOAT3(-1.0f, +0.0f, +0.0f) }),   //   0
+        Vertex({ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(Colors::White)}),//, XMFLOAT3(+0.0f, -1.0f, +0.0f) }),   //   1
+        Vertex({ XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT4(Colors::White)}),//, XMFLOAT3(+0.0f, +0.0f, -1.0f) }),   //   2
+        Vertex({ XMFLOAT3(-1.0f, +1.0f, -1.0f), XMFLOAT4(Colors::Black)}),//, XMFLOAT3(-1.0f, +0.0f, +0.0f) }),   //   3
+        Vertex({ XMFLOAT3(-1.0f, +1.0f, -1.0f), XMFLOAT4(Colors::Black)}),//, XMFLOAT3(+0.0f, +1.0f, +0.0f) }),   //   4
+        Vertex({ XMFLOAT3(-1.0f, +1.0f, -1.0f), XMFLOAT4(Colors::Black)}),//, XMFLOAT3(+0.0f, +0.0f, -1.0f) }),   //   5
+        Vertex({ XMFLOAT3(+1.0f, +1.0f, -1.0f), XMFLOAT4(Colors::Red)}),//, XMFLOAT3(+1.0f, +0.0f, +0.0f) }),     //   6
+        Vertex({ XMFLOAT3(+1.0f, +1.0f, -1.0f), XMFLOAT4(Colors::Red)}),//, XMFLOAT3(+0.0f, +1.0f, +0.0f) }),     //   7
+        Vertex({ XMFLOAT3(+1.0f, +1.0f, -1.0f), XMFLOAT4(Colors::Red)}),//, XMFLOAT3(+0.0f, +0.0f, -1.0f) }),     //   8
+        Vertex({ XMFLOAT3(+1.0f, -1.0f, -1.0f), XMFLOAT4(Colors::Green)}),//, XMFLOAT3(+1.0f, +0.0f, +0.0f) }),   //   9
+        Vertex({ XMFLOAT3(+1.0f, -1.0f, -1.0f), XMFLOAT4(Colors::Green)}),//, XMFLOAT3(+0.0f, -1.0f, +0.0f) }),   //  10
+        Vertex({ XMFLOAT3(+1.0f, -1.0f, -1.0f), XMFLOAT4(Colors::Green)}),//, XMFLOAT3(+0.0f, +0.0f, -1.0f) }),   //  11
+        Vertex({ XMFLOAT3(-1.0f, -1.0f, +1.0f), XMFLOAT4(Colors::Blue)}),//, XMFLOAT3(-1.0f, +0.0f, +0.0f) }),    //  12
+        Vertex({ XMFLOAT3(-1.0f, -1.0f, +1.0f), XMFLOAT4(Colors::Blue)}),//, XMFLOAT3(+0.0f, -1.0f, +0.0f) }),    //  13
+        Vertex({ XMFLOAT3(-1.0f, -1.0f, +1.0f), XMFLOAT4(Colors::Blue)}),//, XMFLOAT3(+0.0f, +0.0f, +1.0f) }),    //  14
+        Vertex({ XMFLOAT3(-1.0f, +1.0f, +1.0f), XMFLOAT4(Colors::Yellow)}),//, XMFLOAT3(-1.0f, +0.0f, +0.0f) }),  //  15
+        Vertex({ XMFLOAT3(-1.0f, +1.0f, +1.0f), XMFLOAT4(Colors::Yellow)}),//, XMFLOAT3(+0.0f, +1.0f, +0.0f) }),  //  16
+        Vertex({ XMFLOAT3(-1.0f, +1.0f, +1.0f), XMFLOAT4(Colors::Yellow)}),//, XMFLOAT3(+0.0f, +0.0f, +1.0f) }),  //  17
+        Vertex({ XMFLOAT3(+1.0f, +1.0f, +1.0f), XMFLOAT4(Colors::Cyan)}),//, XMFLOAT3(+1.0f, +0.0f, +0.0f) }),    //  18
+        Vertex({ XMFLOAT3(+1.0f, +1.0f, +1.0f), XMFLOAT4(Colors::Cyan)}),//, XMFLOAT3(+0.0f, +1.0f, +0.0f) }),    //  19
+        Vertex({ XMFLOAT3(+1.0f, +1.0f, +1.0f), XMFLOAT4(Colors::Cyan)}),//, XMFLOAT3(+0.0f, +0.0f, +1.0f) }),    //  20
+        Vertex({ XMFLOAT3(+1.0f, -1.0f, +1.0f), XMFLOAT4(Colors::Magenta)}),//, XMFLOAT3(+1.0f, +0.0f, +0.0f) }), //  21
+        Vertex({ XMFLOAT3(+1.0f, -1.0f, +1.0f), XMFLOAT4(Colors::Magenta)}),//, XMFLOAT3(+0.0f, -1.0f, +0.0f) }), //  22
+        Vertex({ XMFLOAT3(+1.0f, -1.0f, +1.0f), XMFLOAT4(Colors::Magenta)})//, XMFLOAT3(+0.0f, +0.0f, +1.0f) })  //  23
     };
 
 	std::array<std::uint16_t, 36> indices =
 	{
 		// front face
-		0, 1, 2,
-		0, 2, 3,
+		2, 5, 8,
+		2, 8, 11,
 
 		// back face
-		4, 6, 5,
-		4, 7, 6,
+		14, 20, 17,
+		14, 23, 20,
 
 		// left face
-		4, 5, 1,
-		4, 1, 0,
+		12, 15, 3,
+		12, 3, 0,
 
 		// right face
-		3, 2, 6,
-		3, 6, 7,
+		9, 6, 18,
+		9, 18, 21,
 
 		// top face
-		1, 5, 6,
-		1, 6, 2,
+		4, 16, 19,
+		4, 19, 7,
 
 		// bottom face
-		4, 0, 3,
-		4, 3, 7
+		13, 1, 10,
+		13, 10, 22
 	};
 
     const UINT vbByteSize = (UINT)vertices.size() * sizeof(Vertex);
